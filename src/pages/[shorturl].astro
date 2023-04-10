@@ -1,0 +1,19 @@
+---
+export async function getStaticPaths() {
+  const data = [
+			{ short: 'google', long: 'https://www.google.com' },
+			{ short: 'amazon', long: 'https://www.amazon.com' },
+			{ short: 'srblife', long: 'https://www.srblife.com' },
+		];
+
+  return data.map((url) => {
+    return {
+      params: { shorturl: url.short },
+      props: { longurl: url.long },
+    };
+  });
+}
+
+const { longurl } = Astro.props;
+---
+<meta http-equiv="refresh" content={`0; URL=${longurl}`} />
